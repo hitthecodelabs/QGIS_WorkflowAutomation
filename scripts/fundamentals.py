@@ -306,8 +306,10 @@ project = QgsProject.instance()
 # 1) Replace an existing layer with a new raster
 replace_layer_with_raster(
     project, 
-    layer_name="OpenStreetMap", 
-    xyz_url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+    # layer_name="OpenStreetMap", 
+    # xyz_url="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    layer_name="Bing Aerial", 
+    xyz_url="http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1"
 )
 
 # 2) Transform a layer to EPSG:3857
