@@ -310,8 +310,10 @@ replace_layer_with_raster(
     # xyz_url="https://tile.openstreetmap.org/{z}/{x}/{y}.png",
     # layer_name="Bing Aerial", 
     # xyz_url="http://ecn.t3.tiles.virtualearth.net/tiles/a{q}.jpeg?g=1",
-    layer_name="Esri Satellite", 
-    xyz_url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+    # layer_name="Esri Satellite", 
+    # xyz_url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    layer_name="Esri Standard", 
+    xyz_url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}"
 )
 
 # 2) Transform a layer to EPSG:3857
