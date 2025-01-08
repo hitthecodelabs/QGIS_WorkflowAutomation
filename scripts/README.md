@@ -1,7 +1,7 @@
 
 # QGIS Automation Functions
 
-This repository (or script) contains three Python functions designed for use within a QGIS environment:
+This script contains three Python functions designed for use within a QGIS environment:
 
 - **`list_registered_map_sources()`**
 - **`list_registered_xyz_tiles()`**
