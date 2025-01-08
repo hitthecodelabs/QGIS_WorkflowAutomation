@@ -289,3 +289,46 @@ def add_frame_to_layout(layout, margin_mm=1.0, outline_width_mm=0.65):
     print(f"Added a rectangular frame to layout '{layout.name()}'.")
     return frame
 
+import os
+os.chdir('/path/to/your/project/directory')
+
+from fundamentals import (
+    remove_existing_layer, 
+    replace_layer_with_raster, 
+    transform_layer_crs,
+    set_layer_opacity,
+    create_basic_marker_layer,
+    add_frame_to_layout
+)
+
+project = QgsProject.instance()
+
+# 1) Replace an existing layer with a new raster
+replace_layer_with_raster(
+    project, 
+    layer_name="OpenStreetMap", 
+    xyz_url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+)
+
+# 2) Transform a layer to EPSG:3857
+some_layer = project.mapLayersByName("Districts")[0]
+transform_layer_crs(some_layer, "EPSG:3857", project)
+
+# 3) Set partial opacity on a layer
+set_layer_opacity(some_layer, 0.4)
+
+# 4) Create a marker at a given coordinate
+create_basic_marker_layer(
+    project, 
+    layer_name="MyMarker", 
+    point_geometry=QgsPointXY(-74.0, 4.6), 
+    marker_color="#FF0000", 
+    marker_size=8.0
+)
+
+# 5) Add a frame to a layout (assuming the layout is already created)
+layout = QgsPrintLayout(project)
+layout.initializeDefaults()
+layout.setName("DemoLayout")
+project.layoutManager().addLayout(layout)
+add_frame_to_layout(layout)
