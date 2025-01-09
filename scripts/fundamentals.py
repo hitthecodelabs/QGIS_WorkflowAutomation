@@ -289,6 +289,61 @@ def add_frame_to_layout(layout, margin_mm=1.0, outline_width_mm=0.65):
     print(f"Added a rectangular frame to layout '{layout.name()}'.")
     return frame
 
+def add_scale_bar(layout, linked_map, position, size, units, units_per_segment, segment_height=1.5, num_segments=2, font_family="Arial", font_size=8, style="Line Ticks Up", background_color=QColor("white")):
+    """
+    Adds a scale bar to a QGIS print layout.
+
+    Parameters:
+        layout (QgsPrintLayout): The layout where the scale bar will be added.
+        linked_map (QgsLayoutItemMap): The map item to which the scale bar will be linked.
+        position (QgsLayoutPoint): The position of the scale bar in the layout.
+        size (QgsLayoutSize): The size of the scale bar.
+        units (QgsUnitTypes.DistanceUnit): The distance units to be displayed (e.g., meters, kilometers).
+        units_per_segment (float): The length of each segment of the scale bar in the specified units.
+        segment_height (float, optional): Height of the scale bar segments in millimeters. Default is 1.5 mm.
+        num_segments (int, optional): Number of segments on the right side of the scale bar. Default is 2.
+        font_family (str, optional): Font family for the scale bar labels. Default is "Arial".
+        font_size (int, optional): Font size for the scale bar labels. Default is 8.
+        style (str, optional): Style of the scale bar (e.g., "Line Ticks Up"). Default is "Line Ticks Up".
+        background_color (QColor, optional): Background color for the scale bar. Default is white.
+
+    Returns:
+        QgsLayoutItemScaleBar: The created scale bar item.
+
+    Raises:
+        ValueError: If the linked_map is not valid or if required parameters are missing.
+    """
+    # Validate input
+    if not layout or not linked_map:
+        raise ValueError("Both 'layout' and 'linked_map' must be provided.")
+
+    # Create the scale bar item
+    scale_bar = QgsLayoutItemScaleBar(layout)
+    scale_bar.setStyle(style)  # Set the style (e.g., Line Ticks Up)
+    scale_bar.setLinkedMap(linked_map)  # Link the scale bar to the map
+    scale_bar.setUnits(units)  # Set the measurement units (e.g., meters, kilometers)
+    scale_bar.setUnitsPerSegment(units_per_segment)  # Set segment length in units
+    scale_bar.setUnitLabel("km" if units == QgsUnitTypes.DistanceKilometers else "m")  # Set unit label
+
+    # Configure the appearance of the scale bar
+    scale_bar.setNumberOfSegments(num_segments)  # Number of segments to the right of the center
+    scale_bar.setNumberOfSegmentsLeft(0)  # No segments to the left of the center
+    scale_bar.setHeight(segment_height)  # Height of the segments in millimeters
+    scale_bar.setFont(QFont(font_family, font_size))  # Font family and size for labels
+
+    # Enable background for better visibility
+    scale_bar.setBackgroundEnabled(True)
+    scale_bar.setBackgroundColor(background_color)
+
+    # Add the scale bar to the layout
+    layout.addLayoutItem(scale_bar)
+
+    # Adjust the position and size of the scale bar
+    scale_bar.attemptResize(size)
+    scale_bar.attemptMove(position)
+
+    return scale_bar
+
 import os
 os.chdir('/path/to/your/project/directory')
 
