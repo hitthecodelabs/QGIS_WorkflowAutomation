@@ -344,6 +344,73 @@ def add_scale_bar(layout, linked_map, position, size, units, units_per_segment, 
 
     return scale_bar
 
+def add_html_info_table(layout, info_html, position, size, font_family="Arial", font_size=12):
+    """
+    Adds an HTML table with information to a QGIS print layout.
+
+    Parameters:
+        layout (QgsPrintLayout): The layout where the HTML table will be added.
+        info_html (str): The HTML content to be displayed.
+        position (QgsLayoutPoint): The position of the HTML table in the layout.
+        size (QgsLayoutSize): The size of the HTML table.
+        font_family (str, optional): Font family for the table content. Default is "Arial".
+        font_size (int, optional): Font size for the table content. Default is 12.
+
+    Returns:
+        QgsLayoutItemLabel: The created HTML label item.
+
+    Raises:
+        ValueError: If the layout or info_html is not provided.
+    """
+    # Validate input
+    if not layout or not info_html:
+        raise ValueError("Both 'layout' and 'info_html' must be provided.")
+
+    # Create the HTML label item
+    label = QgsLayoutItemLabel(layout)
+    label.setText(info_html)  # Set the HTML content
+    label.setMode(QgsLayoutItemLabel.ModeHtml)  # Enable HTML rendering
+    label.setFont(QFont(font_family, font_size))  # Set font family and size
+
+    # Add the HTML label to the layout
+    layout.addLayoutItem(label)
+
+    # Adjust the position and size of the HTML label
+    label.attemptResize(size)
+    label.attemptMove(position)
+
+    return label
+
+# HTML Example Usage
+# <div class="example-code">
+# <p><b>Example:</b> Adding an HTML table to a QGIS layout.</p>
+# <pre>
+# info_html = """
+# <div class='info-table'>
+#     <table>
+#         <tr><th>Property</th><th>Value</th></tr>
+#         <tr><td>Name</td><td>Central Mall</td></tr>
+#         <tr><td>District</td><td>Green District</td></tr>
+#         <tr><td>Province</td><td>Central Province</td></tr>
+#         <tr><td>Area</td><td>15000 m²</td></tr>
+#     </table>
+# </div>
+# """
+#
+# table_position = QgsLayoutPoint(10, 50, QgsUnitTypes.LayoutMillimeters)
+# table_size = QgsLayoutSize(100, 50, QgsUnitTypes.LayoutMillimeters)
+#
+# html_label = add_html_info_table(
+#     layout=layout,
+#     info_html=info_html,
+#     position=table_position,
+#     size=table_size,
+#     font_family="Arial",
+#     font_size=10
+# )
+# </pre>
+# </div>
+
 import os
 os.chdir('/path/to/your/project/directory')
 
