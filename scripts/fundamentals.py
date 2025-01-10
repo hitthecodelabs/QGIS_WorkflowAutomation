@@ -94,7 +94,6 @@ def replace_layer_with_raster(project, layer_name, xyz_url, zmin=0, zmax=19):
         print(f"Error: Could not load raster layer: {layer_name}")
         return None
 
-
 def transform_layer_crs(layer, target_epsg, project):
     """
     Transform all features of a vector layer into a target CRS.
