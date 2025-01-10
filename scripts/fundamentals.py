@@ -21,7 +21,6 @@ from qgis.core import (
 )
 from PyQt5.QtGui import QColor, QFont
 
-
 def remove_existing_layer(project, layer_name):
     """
     Remove an existing layer from a QGIS project by its name.
@@ -49,7 +48,6 @@ def remove_existing_layer(project, layer_name):
             print(f"Removed existing layer: {layer_name}")
             return True
     return False
-
 
 def replace_layer_with_raster(project, layer_name, xyz_url, zmin=0, zmax=19):
     """
@@ -142,7 +140,6 @@ def transform_layer_crs(layer, target_epsg, project):
     else:
         print("No geometry updated; possibly empty layer.")
 
-
 def set_layer_opacity(layer, opacity=0.5):
     """
     Set the opacity (transparency) for a layer.
@@ -169,7 +166,6 @@ def set_layer_opacity(layer, opacity=0.5):
         return
     layer.setOpacity(opacity)
     print(f"Set opacity of layer '{layer.name()}' to {opacity}.")
-
 
 def create_basic_marker_layer(
     project, 
@@ -236,7 +232,6 @@ def create_basic_marker_layer(
     project.addMapLayer(memory_layer)
     print(f"Marker layer '{layer_name}' created at {point_geometry}.")
     return memory_layer
-
 
 def add_frame_to_layout(layout, margin_mm=1.0, outline_width_mm=0.65):
     """
