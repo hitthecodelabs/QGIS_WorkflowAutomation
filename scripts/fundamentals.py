@@ -375,6 +375,38 @@ def add_html_info_table(layout, info_html, position, size, font_family="Arial", 
 
     return label
 
+def add_symbology_legend(layout, map_item,
+                         title="Symbology",
+                         pos_x=220, pos_y=50,
+                         width=40, height=60):
+    """
+    Adds a legend (symbology) item to the layout, referencing a map item.
+    
+    Parameters:
+        layout (QgsPrintLayout): The layout where the legend should be placed.
+        map_item (QgsLayoutItemMap): The map item that the legend will reference.
+        title (str): Legend title (top text).
+        pos_x (float): X position (mm) for the legend’s top-left corner.
+        pos_y (float): Y position (mm) for the legend’s top-left corner.
+        width (float): Width (mm) of the legend box.
+        height (float): Height (mm) of the legend box.
+    """
+    legend = QgsLayoutItemLegend(layout)
+    legend.setLinkedMap(map_item)     # Link the legend to the map item
+    legend.setTitle(title)            # Legend’s main title
+    legend.setFrameEnabled(True)      # Draw a frame around the legend
+    
+    # Remove or comment out legend.setFont(...) for older QGIS:
+    # font = QFont("Arial", 10)
+    # font.setBold(True)
+    # legend.setFont(font)
+    
+    layout.addLayoutItem(legend)
+    legend.attemptMove(QgsLayoutPoint(pos_x, pos_y))
+    legend.attemptResize(QgsLayoutSize(width, height))
+
+    print("Symbology legend added to layout (without setFont).")
+
 # HTML Example Usage
 # <div class="example-code">
 # <p><b>Example:</b> Adding an HTML table to a QGIS layout.</p>
