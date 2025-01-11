@@ -402,6 +402,32 @@ def export_layout_to_png(layout, output_png_path):
         print("Failed to export PNG.")
         return False
 
+def export_layout_to_pdf(layout, output_pdf_path):
+    """
+    Exports a given QGIS layout to a PDF file.
+
+    Parameters
+    ----------
+    layout : QgsPrintLayout
+        The QGIS layout to export.
+    output_pdf_path : str
+        The file path where the PDF will be saved.
+
+    Returns
+    -------
+    bool
+        True if the export was successful, False otherwise.
+    """
+    exporter = QgsLayoutExporter(layout)
+    pdf_result = exporter.exportToPdf(output_pdf_path, QgsLayoutExporter.PdfExportSettings())
+
+    if pdf_result == QgsLayoutExporter.Success:
+        print(f"PDF successfully exported to {output_pdf_path}")
+        return True
+    else:
+        print("Failed to export PDF.")
+        return False
+
 # ------------------------------------------------------------------
 # 3. Main (Demonstration) Workflow
 # ------------------------------------------------------------------
