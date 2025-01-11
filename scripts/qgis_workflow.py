@@ -491,6 +491,38 @@ def add_title_label(layout, title_text):
     title_label.attemptMove(QgsLayoutPoint(10, 10, QgsUnitTypes.LayoutMillimeters))
     layout.addLayoutItem(title_label)
 
+def add_symbology_legend(layout, map_item, title, pos_x, pos_y, width, height):
+    """
+    Adds a symbology legend to the layout.
+
+    Parameters
+    ----------
+    layout : QgsPrintLayout
+        The layout where the legend will be added.
+    map_item : QgsLayoutItemMap
+        The map item to link the legend to.
+    title : str
+        The title for the legend.
+    pos_x : float
+        The x-coordinate for the legend position.
+    pos_y : float
+        The y-coordinate for the legend position.
+    width : float
+        The width of the legend.
+    height : float
+        The height of the legend.
+
+    Returns
+    -------
+    None
+    """
+    legend = QgsLayoutItemLegend(layout)
+    legend.setLinkedMap(map_item)
+    legend.setTitle(title)
+    legend.attemptMove(QgsLayoutPoint(pos_x, pos_y, QgsUnitTypes.LayoutMillimeters))
+    legend.attemptResize(QgsLayoutSize(width, height, QgsUnitTypes.LayoutMillimeters))
+    layout.addLayoutItem(legend)
+
 # ------------------------------------------------------------------
 # 3. Main (Demonstration) Workflow
 # ------------------------------------------------------------------
