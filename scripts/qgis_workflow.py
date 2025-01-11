@@ -376,6 +376,32 @@ def create_simple_layout(project, polygon_layer, raster_layer):
     print("A basic print layout was created with a map and a label.")
     return layout
 
+def export_layout_to_png(layout, output_png_path):
+    """
+    Exports a given QGIS layout to a PNG image.
+
+    Parameters
+    ----------
+    layout : QgsPrintLayout
+        The QGIS layout to export.
+    output_png_path : str
+        The file path where the PNG image will be saved.
+
+    Returns
+    -------
+    bool
+        True if the export was successful, False otherwise.
+    """
+    exporter = QgsLayoutExporter(layout)
+    png_result = exporter.exportToImage(output_png_path, QgsLayoutExporter.ImageExportSettings())
+
+    if png_result == QgsLayoutExporter.Success:
+        print(f"PNG successfully exported to {output_png_path}")
+        return True
+    else:
+        print("Failed to export PNG.")
+        return False
+
 # ------------------------------------------------------------------
 # 3. Main (Demonstration) Workflow
 # ------------------------------------------------------------------
