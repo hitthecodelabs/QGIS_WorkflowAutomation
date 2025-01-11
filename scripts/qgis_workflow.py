@@ -469,6 +469,28 @@ def add_footer_label(layout):
     footer_label.attemptMove(QgsLayoutPoint(10, 280, QgsUnitTypes.LayoutMillimeters))
     layout.addLayoutItem(footer_label)
 
+def add_title_label(layout, title_text):
+    """
+    Adds a title label to the layout.
+
+    Parameters
+    ----------
+    layout : QgsPrintLayout
+        The layout where the title will be added.
+    title_text : str
+        The text for the title.
+
+    Returns
+    -------
+    None
+    """
+    title_label = QgsLayoutItemLabel(layout)
+    title_label.setText(title_text)
+    title_label.setFont(QFont("Arial", 14, QFont.Bold))
+    title_label.adjustSizeToText()
+    title_label.attemptMove(QgsLayoutPoint(10, 10, QgsUnitTypes.LayoutMillimeters))
+    layout.addLayoutItem(title_label)
+
 # ------------------------------------------------------------------
 # 3. Main (Demonstration) Workflow
 # ------------------------------------------------------------------
