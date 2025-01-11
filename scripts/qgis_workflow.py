@@ -428,6 +428,26 @@ def export_layout_to_pdf(layout, output_pdf_path):
         print("Failed to export PDF.")
         return False
 
+def add_images_to_layout(layout):
+    """
+    Adds images (e.g., logos) to the layout.
+
+    Parameters
+    ----------
+    layout : QgsPrintLayout
+        The layout where the images will be added.
+
+    Returns
+    -------
+    None
+    """
+    # Example: Add a logo to the top-right corner
+    image_item = QgsLayoutItemPicture(layout)
+    image_item.setPicturePath("path/to/logo.png")
+    image_item.attemptMove(QgsLayoutPoint(200, 10, QgsUnitTypes.LayoutMillimeters))
+    image_item.attemptResize(QgsLayoutSize(30, 30, QgsUnitTypes.LayoutMillimeters))
+    layout.addLayoutItem(image_item)
+
 # ------------------------------------------------------------------
 # 3. Main (Demonstration) Workflow
 # ------------------------------------------------------------------
