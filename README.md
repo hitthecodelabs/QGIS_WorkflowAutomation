@@ -1,5 +1,7 @@
 # QGIS Workflow Automation
 
+![Map](./images/Mall_Province_Layout.png)
+
 This script provides a series of functions to automate common tasks in QGIS, including loading layers, calculating areas and centroids, and creating print layouts. It is designed to streamline workflows involving geospatial data and simplify tasks like map creation and data analysis.
 
 ## Features
