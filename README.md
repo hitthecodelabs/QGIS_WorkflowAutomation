@@ -8,7 +8,7 @@ This script provides a series of functions to automate common tasks in QGIS, inc
 
 - **Layer Management**:
   - Load raster layers (e.g., Bing Aerial imagery).
-  - Load vector layers from KML/KMZ files.
+  - Load vector layers from KML/KMZ, GeoJSON and shp/shx files.
   - Remove existing layers to avoid duplication.
 
 - **Data Processing**:
