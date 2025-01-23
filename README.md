@@ -1,6 +1,6 @@
 # QGIS Workflow Automation
 
-![Map](./images/Mall_Province_Layout.png)
+![Map](./images/Mall_del_Sur_Layout.png)
 
 ![Map2](./images/District_Layout.png)
 
