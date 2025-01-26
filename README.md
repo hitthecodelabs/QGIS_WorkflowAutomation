@@ -2,7 +2,9 @@
 
 ![Map](./images/Mall_del_Sur_Layout.png)
 
-![Map2](./images/District_Layout.png)
+![Map2](./images/Riocentro_Sur_Mall_Province_Layout.png)
+
+![Map3](./images/District_Layout.png)
 
 This script provides a series of functions to automate common tasks in QGIS, including loading layers, calculating areas and centroids, and creating print layouts. It is designed to streamline workflows involving geospatial data and simplify tasks like map creation and data analysis.
 
